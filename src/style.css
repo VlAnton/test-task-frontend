@@ -6,6 +6,12 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  width: 100vw;
   min-height: 100vh;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }

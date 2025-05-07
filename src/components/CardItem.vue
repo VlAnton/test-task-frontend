@@ -1,12 +1,15 @@
-<script setup>
-import { defineProps } from "vue";
+<script setup lang="ts">
+import { defineProps } from 'vue'
 
-const props = defineProps<{ title: string }>();
+type CardItemProps = {
+  name: string
+}
+const props = defineProps<CardItemProps>()
 </script>
 
 <template>
   <div class="card-item">
-    <h3>{{ title }}</h3>
+    <h3>{{ name }}</h3>
   </div>
 </template>
 
