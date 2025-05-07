@@ -3,14 +3,19 @@ import { ref, reactive } from 'vue'
 import { leftBlockData, rightBlockData } from '@/mock-data'
 import CardItem from '@/components/CardItem.vue'
 
-const leftBlockSelected = reactive([])
-const rightBlockSelected = ref(null)
-
-const isSelected = (item) => {
-  return leftBlockSelected.find((selectedItem) => selectedItem.id === item.id)
+type Item = {
+  id: number
+  name: string
 }
 
-const onToggleLeftBlock = (item) => {
+const leftBlockSelected = reactive<Item[]>([])
+const rightBlockSelected = ref<Item | null>(null)
+
+const isSelected = (item: Item) => {
+  return Boolean(leftBlockSelected.find((selectedItem) => selectedItem.id === item.id))
+}
+
+const onToggleLeftBlock = (item: Item) => {
   const index = leftBlockSelected.findIndex((selectedItem) => selectedItem.id === item.id)
   if (index !== -1) {
     leftBlockSelected.splice(index, 1)
@@ -21,7 +26,7 @@ const onToggleLeftBlock = (item) => {
     leftBlockSelected.push(item)
   }
 }
-const onToggleRightBlock = (item) => {
+const onToggleRightBlock = (item: Item) => {
   if (rightBlockSelected.value?.id === item.id) {
     rightBlockSelected.value = null
   } else {
